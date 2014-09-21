@@ -103,6 +103,10 @@ input {
 	text-align: left;
 }
 
+.display-box-container span:hover {
+	cursor: default !important;
+}
+
 #display-box {
 	margin-left: 5px;
 	padding-right: 10px;
