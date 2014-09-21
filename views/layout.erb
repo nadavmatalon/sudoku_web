@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sudoku-Web</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Sniglet">
+		<link type="text/css" rel="stylesheet" href="./css/reset.css" />  
+		<link type="text/css" rel="stylesheet" href="./css/style.css" />
+		<link type="text/css" rel="stylesheet" href="./css/switchery.css" />  
+		<link type="text/css" rel="stylesheet" href="./css/powerange.css" />
+		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+		<script type="text/javascript" src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
+ 		<script type="text/javascript" src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="./javascript/switchery.js"></script>  
+		<script type="text/javascript" src="./javascript/powerange.js"></script>
+		<script type="text/javascript" src="./javascript/sudoku_web.js"></script>
+	</head>
+	<body>
+		<p class='page-title'>Sudoku</p>	
+		<%= yield %>
+	</body>
+</html>
+
+<script type="text/javascript">
+
+  	$.ajaxSetup ({  
+     	cache: false  
+  	});
+
+	$(".new-puzzle").button();
+
+	$(".reset-puzzle").button();
+
+	$(".check-solution").button();
+
+  	$(function() {
+    	$("#radio").buttonset();
+	$("#radio2").css("background-image", "none !important");
+	$("#radio2").css("background-color", "#aaaaa5");
+  	});
+
+ 	$(function() {
+    	$("#mode").buttonset();
+  	});
+
+  	$(document).ready(function() { 
+ 		new_puzzle();
+ 		reset_puzzle();
+ 		show_solution();
+ 		hide_solution();
+ 		check_solution();
+ 		get_current_state();
+
+		var slider = document.querySelector('.slider');
+		var init = new Powerange(slider, {
+			callback      : function() {
+			},
+			min           : 1,
+			max           : 5,
+			decimal       : true,
+			disable       : false,
+			disableOpacity: 0.5,
+			hideRange     : true,
+			klass         : 'slider',
+			start         : 1,
+			step          : 1,
+			vertical      : false
+		});
+
+		slider.onchange = function() {
+				slider.innerHTML = slider.value;
+				var level;
+    			switch (slider.value) {
+    				case '1': 
+        				level = 'Very Easy'
+       	 			break;
+
+   					case '2': 
+        				level = 'Easy'
+       	 			break;
+
+   					case '3': 
+        				level = 'Medium'
+       	 			break;
+
+   					case '4': 
+        				level = 'Hard'
+       	 			break;
+
+       	 			case '5': 
+        				level = 'Very Hard'
+       	 			break;
+    			};
+				document.getElementById('display-box').innerHTML = level;
+				console.log("slider: " + slider.value);
+				console.log("level: " + level);
+		};
+
+        $(document).on('click','input[type=text]',function() { 
+        	this.select(); 
+        });
+
+        $(document).on('blur','input[type=text]',function() { 
+        	get_current_state();
+        });
+
+ 	});
+
+	function setRadio(id) {
+    	var radio = $('#' + id);
+    	radio[0].checked = true;
+    	radio.button("refresh");
+	}
+
+  	function new_puzzle() {
+  	   	$('.new-puzzle').on('click', function() {
+  	   		$('.new-puzzle').removeClass("ui-state-focus ui-state-hover");
+  	   		setRadio('radio6');
+  	   		var slider_data = document.querySelector('.slider').value;
+  	   		var radio_button_data = (($("input[name=radio]:checked").val()));
+			$.post("/new_puzzle", 
+ 				{
+					radio: slider_data
+					// radio: radio_button_data
+  				}, function(data) {
+
+			// $.get("/new_puzzle", function(data) {
+            	// $("#puzzle-div").html(data);
+				console.log(data);
+				for (var i=0; i < data.length; i++) {
+					if ((data.charAt(i)) != 0) {
+						$('#'+i).val(data.charAt(i));
+					} else {
+						$('#'+i).val('');
+					};
+				};
+          	},'text');
+  		});
+  	};
+
+
+ 	function show_solution() {
+ 		$('#radio7').on('click', function() {
+ 			console.log('show_solution'); 
+ 			var current_state_data = '';
+			for (var i=0; i < 81; i++) {
+				if (($('#'+i).val()) != '') {
+					current_state_data = (current_state_data + ($('#'+i).val()));
+				} else {
+					current_state_data = (current_state_data + '0');
+				};
+			};
+			$.post("/show_solution",
+				{
+					mode: current_state_data
+  				}, function(data) {
+					for (var i=0; i < data.length; i++) {
+						$('#'+i).val(data.charAt(i));
+					};
+				},'text');
+ 		});
+ 	};
+
+
+ 	function hide_solution() {
+ 		$('#radio6').on('click', function() {
+ 			console.log('hide_solution'); 
+			var current_state_data = '';
+			for (var i=0; i < 81; i++) {
+				if (($('#'+i).val()) != '') {
+					current_state_data = (current_state_data + ($('#'+i).val()));
+				} else {
+					current_state_data = (current_state_data + '0');
+				};
+			};
+			$.post("/hide_solution",
+				{
+					mode: current_state_data
+  				}, function(data) {
+					for (var i=0; i < data.length; i++) {
+					if (data.charAt(i) != '0') {
+						$('#'+i).val(data.charAt(i));
+					} else {
+						$('#'+i).val('');
+					};
+				};
+			},'text');
+ 		});
+ 	};
+
+
+ 	function get_current_state() {
+ 		var current_state = '';
+ 		for (var i=0; i < 81; i++) {
+			if ($('#'+i).val() != '') {
+				current_state = (current_state + $('#'+i).val());
+			} else {
+				current_state = (current_state + '0');
+			};
+		};
+		return current_state;
+ 	};
+
+ 	function reset_puzzle() {
+  	   	$('.reset-puzzle').on('click', function() {
+  	   		$('.reset-puzzle').removeClass("ui-state-focus ui-state-hover");
+  	   		setRadio('radio6');
+			var current_state_data = '';
+			for (var i=0; i < 81; i++) {
+				if (($('#'+i).val()) != '') {
+					current_state_data = (current_state_data + ($('#'+i).val()));
+				} else {
+					current_state_data = (current_state_data + '0');
+				};
+			};
+			$.post("/reset_puzzle",
+				{
+					mode: current_state_data
+  				}, function(data) {
+					for (var i=0; i < data.length; i++) {
+						if ((data.charAt(i)) != 0) {
+							$('#'+i).val(data.charAt(i));
+						} else {
+							$('#'+i).val('');
+						};
+					};	
+				},'text');
+  			});
+  		};
+
+ 	function check_solution() {
+  	   	$('.check-solution').on('click', function() {
+  	   		$('.check-solution').removeClass("ui-state-focus ui-state-hover");
+			var current_state_data = '';
+			for (var i=0; i < 81; i++) {
+				if (($('#'+i).val()) != '') {
+					current_state_data = (current_state_data + ($('#'+i).val()));
+				} else {
+					current_state_data = (current_state_data + '0');
+				};
+			};
+			$.post("/check_solution",
+				{
+					mode: current_state_data
+  				}, function(data) {
+					$("#puzzle-div").html(data);
+				},'text');
+  			});
+  		};
+
+
+ 	// function reset_puzzle() {
+  // 	   	$('.reset-puzzle').on('click', function() {
+  // 	   		setRadio('radio6');
+		// 	$.get("/reset_puzzle", function(data) {
+		// 		console.log(data);
+		// 		for (var i=0; i < data.length; i++) {
+		// 			if ((data.charAt(i)) != 0) {
+		// 				$('#'+i).val(data.charAt(i));
+		// 			} else {
+		// 				$('#'+i).val('');
+		// 			};
+		// 		};
+  //         	},'text');
+  // 		});
+  // 	};
+
+</script>

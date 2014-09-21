@@ -1,0 +1,53 @@
+
+<div id='puzzle-div'></div>
+
+<div class='button-container'>
+    <button type='button' class='new-puzzle'>New Puzzle</button>
+    <button type='button' class='reset-puzzle'>Reset Puzzle</button>
+    <button type='button' class='check-solution'>Check Solution</button>
+</div>
+
+<div class='slider-container'>
+
+    <div class='slider-text'>
+        <span>Level of Difficulty: </span>
+    </div>
+
+    <div class='display-box-container'>
+        <div id="display-box">Very Easy</div>
+    </div>
+
+    <div class="slider-box">
+        <input type="text" class="slider" value=1 />
+    </div>
+
+</div>
+
+
+<!-- <div class='radio-buttons-container' id="radio">
+    <input type="radio" id="radio1" name="radio" value='1' checked="checked"><label for="radio1">1</label>
+    <input type="radio" id="radio2" name="radio" value='2'><label for="radio2">2</label>
+    <input type="radio" id="radio3" name="radio" value='3'><label for="radio3">3</label>
+    <input type="radio" id="radio4" name="radio" value='4'><label for="radio4">4</label>
+    <input type="radio" id="radio5" name="radio" value='5'><label for="radio5">5</label>
+</div> -->
+
+<div class='solution-control-container' id="mode">
+     <input type="radio" id="radio6" name="mode" value='0' checked="checked"><label for="radio6">Hide solution</label>
+     <input type="radio" id="radio7" name="mode" value='1'><label for="radio7">Show solution</label>
+</div>
+
+<div class='main-container'>
+    <% @counter = 0 %>
+    <%for i in 'A'..'I' %>
+        <%for j in 0..8 %>
+            <div class='square'>
+                <input class='square-input' type='text' id=<%= @counter.to_s %> value=<%= '' %> >
+            </div>
+            <% @counter += 1 %>
+        <% end %><br/>
+    <% end %>
+</div>
+
+
+
