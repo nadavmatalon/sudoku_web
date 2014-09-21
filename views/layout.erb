@@ -60,32 +60,32 @@
 		});
 
 		slider.onchange = function() {
-				slider.innerHTML = slider.value;
-				var level;
-    			switch (slider.value) {
-    				case '1': 
-        				level = 'Very Easy'
-       	 			break;
+			slider.innerHTML = slider.value;
+			var level;
+			switch (slider.value) {
+				case '1': 
+    				level = 'Very Easy'
+   	 			break;
 
-   					case '2': 
-        				level = 'Easy'
-       	 			break;
+					case '2': 
+    				level = 'Easy'
+   	 			break;
 
-   					case '3': 
-        				level = 'Medium'
-       	 			break;
+					case '3': 
+    				level = 'Medium'
+   	 			break;
 
-   					case '4': 
-        				level = 'Hard'
-       	 			break;
+					case '4': 
+    				level = 'Hard'
+   	 			break;
 
-       	 			case '5': 
-        				level = 'Very Hard'
-       	 			break;
-    			};
-				document.getElementById('display-box').innerHTML = level;
-				console.log("slider: " + slider.value);
-				console.log("level: " + level);
+   	 			case '5': 
+    				level = 'Very Hard'
+   	 			break;
+			};
+			document.getElementById('display-box').innerHTML = level;
+			// console.log("slider: " + slider.value);
+			// console.log("level: " + level);
 		};
 
         $(document).on('click','input[type=text]',function() { 
@@ -106,19 +106,13 @@
 
   	function new_puzzle() {
   	   	$('#controls-new-puzzle').on('click', function() {
-  	   		// $('.new-puzzle').removeClass("ui-state-focus ui-state-hover");
   	   		setRadio('radio6');
   	   		var slider_data = document.querySelector('.slider').value;
   	   		var radio_button_data = (($("input[name=radio]:checked").val()));
 			$.post("/new_puzzle", 
  				{
 					radio: slider_data
-					// radio: radio_button_data
   				}, function(data) {
-
-			// $.get("/new_puzzle", function(data) {
-            	// $("#puzzle-div").html(data);
-				console.log(data);
 				for (var i=0; i < data.length; i++) {
 					if ((data.charAt(i)) != 0) {
 						$('#'+i).val(data.charAt(i));
@@ -148,7 +142,7 @@
 					for (var i=0; i < data.length; i++) {
 						$('#'+i).val(data.charAt(i));
 					};
-				},'text');
+			},'text');
  		});
  	};
 
@@ -192,7 +186,6 @@
 
  	function reset_puzzle() {
   	   	$('#controls-reset-puzzle').on('click', function() {
-  	   		// $('.reset-puzzle').removeClass("ui-state-focus ui-state-hover");
   	   		setRadio('radio6');
 			var current_state_data = '';
 			for (var i=0; i < 81; i++) {
@@ -213,13 +206,12 @@
 							$('#'+i).val('');
 						};
 					};	
-				},'text');
-  			});
-  		};
+			},'text');
+  		});
+  	};
 
- 	function check_solution() {
+	function check_solution() {
   	   	$('#controls-check-solution').on('click', function() {
-  	   		// $('.check-solution').removeClass("ui-state-focus ui-state-hover");
 			var current_state_data = '';
 			for (var i=0; i < 81; i++) {
 				if (($('#'+i).val()) != '') {
@@ -228,13 +220,31 @@
 					current_state_data = (current_state_data + '0');
 				};
 			};
-			$.post("/check_solution",
-				{
-					mode: current_state_data
-  				}, function(data) {
-					$("#puzzle-div").html(data);
+			if (current_state_data != '000000000000000000000000000000000000000000000000000000000000000000000000000000000') {
+		  	   	$('.slider-container').fadeOut(200);
+				$('.controls-button-container').fadeOut(200, function() {
+					$('.sign-in-popup').fadeIn(200);
+					$('#mask').removeClass('hiding');		
+					$('#mask').addClass('showing');	
+				});
+				$.post("/check_solution",
+					{
+						mode: current_state_data
+	  				}, function(data) {
+						$("#puzzle-div").html(data);
 				},'text');
-  			});
-  		};
+  	   		};
+	  	});
+  	};
+
+	$('#close-button, #mask').on('click', function() { 
+	  	$('.sign-in-popup').fadeOut(200, function(){
+	  		$('#mask').removeClass('showing'); 
+	  		$('#mask').addClass('hiding'); 
+	  		$('.controls-button-container').fadeIn(200);
+  			$('.slider-container').fadeIn(200);
+	  	});
+	});
 
 </script>
+

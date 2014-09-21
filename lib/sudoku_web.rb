@@ -58,19 +58,7 @@ end
 post '/check_solution' do
 	if params[:mode] != '0' * 81
 		grid = Grid.new params[:mode]
-		grid.fully_solved? ? "Puzzle solved" : "Puzzle not solved"
+		grid.fully_solved? ? "Well done, puzzle solved!" : "Puzzle not solved yet"
 	end
 end
 
-
-# get '/reset_puzzle' do
-# 	session[:current_puzzle]
-# end
-
-# get '/show_solution' do
-# 	session[:current_solution]
-# end
-
-# get '/hide_solution' do
-# 	session[:current_state]
-# end
