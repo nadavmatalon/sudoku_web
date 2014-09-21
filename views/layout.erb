@@ -33,15 +33,7 @@
 
 	$(".check-solution").button();
 
-  	$(function() {
-    	$("#radio").buttonset();
-	$("#radio2").css("background-image", "none !important");
-	$("#radio2").css("background-color", "#aaaaa5");
-  	});
-
- 	$(function() {
-    	$("#mode").buttonset();
-  	});
+	$("#mode").buttonset();
 
   	$(document).ready(function() { 
  		new_puzzle();
@@ -138,7 +130,6 @@
   		});
   	};
 
-
  	function show_solution() {
  		$('#radio7').on('click', function() {
  			console.log('show_solution'); 
@@ -160,7 +151,6 @@
 				},'text');
  		});
  	};
-
 
  	function hide_solution() {
  		$('#radio6').on('click', function() {
@@ -187,7 +177,6 @@
 			},'text');
  		});
  	};
-
 
  	function get_current_state() {
  		var current_state = '';
@@ -247,22 +236,5 @@
 				},'text');
   			});
   		};
-
-
- 	// function reset_puzzle() {
-  // 	   	$('.reset-puzzle').on('click', function() {
-  // 	   		setRadio('radio6');
-		// 	$.get("/reset_puzzle", function(data) {
-		// 		console.log(data);
-		// 		for (var i=0; i < data.length; i++) {
-		// 			if ((data.charAt(i)) != 0) {
-		// 				$('#'+i).val(data.charAt(i));
-		// 			} else {
-		// 				$('#'+i).val('');
-		// 			};
-		// 		};
-  //         	},'text');
-  // 		});
-  // 	};
 
 </script>
