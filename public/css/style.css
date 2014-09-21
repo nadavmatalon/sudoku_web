@@ -204,10 +204,11 @@ input {
 
 .controls-button:hover {
 	color: orange;
+	background-color: rgba(150, 150, 150, 0.4);
 }
 
 .controls-button:active {
-	background-position: 1px;
+	outline: none !important;
 }
 
 .container {
@@ -237,21 +238,51 @@ input {
 
 }
 
+.solution-button label {
+}
+
+#mode {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	padding-left: 6px;
+}
+
 #mode label {
-	color: rgb(150, 150, 150);
-/*	background-image: none !important;
-	background-color: rgb(213, 253, 196);*/
+	background-image: none !important;
+	font-size: 15px;
+	font-weight: 200;
+	color: rgb(255, 255, 255);
+	background-color: rgba(200, 200, 200, 0.25);
+	border: 1px solid rgb(200, 200, 200);
+	border-radius: 4px;
+	margin-left: 4px;
+	margin-right: 4px;
+	padding-top: 0px;
+	padding-bottom: 1px;
+	padding-right: 0px;
+	padding-left: 0px;
+	width: 141px;
+	letter-spacing: 0.4px;
+	outline: none !important;
+	display: inline-block;
 }
 
 #mode label:hover {
-	color: rgb(0, 0, 0) !important;
+	color: orange !important;
+	background-color: rgba(150, 150, 150, 0.4) !important;
 }
-
+/*
 .ui-state-active {
 	background-image: none !important;
 	background-color: rgb(167, 234, 198) !important;
 	color: black !important;
 }
+
+*/
+
+
 
 .square {
 	background-color: rgba(200, 200, 200, 0.25);
