@@ -29,13 +29,12 @@
 .range-handle {
   background-color: rgb(255, 255, 255);
   border-radius: 100%;
-  /*cursor: move;*/
   cursor: default;
-  height: 24px;
+  height: 22px;
   left: 0;
-  top: -10px;
+  top: -9px;
   position: absolute;
-  width: 24px;
+  width: 22px;
 
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
