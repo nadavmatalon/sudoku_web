@@ -17,7 +17,6 @@
 		<script type="text/javascript" src="./javascript/sudoku_web.js"></script>
 	</head>
 	<body>
-		<p class='page-title'>Sudoku</p>	
 		<%= yield %>
 	</body>
 </html>
@@ -114,8 +113,8 @@
 	}
 
   	function new_puzzle() {
-  	   	$('.new-puzzle').on('click', function() {
-  	   		$('.new-puzzle').removeClass("ui-state-focus ui-state-hover");
+  	   	$('#controls-new-puzzle').on('click', function() {
+  	   		// $('.new-puzzle').removeClass("ui-state-focus ui-state-hover");
   	   		setRadio('radio6');
   	   		var slider_data = document.querySelector('.slider').value;
   	   		var radio_button_data = (($("input[name=radio]:checked").val()));
@@ -203,8 +202,8 @@
  	};
 
  	function reset_puzzle() {
-  	   	$('.reset-puzzle').on('click', function() {
-  	   		$('.reset-puzzle').removeClass("ui-state-focus ui-state-hover");
+  	   	$('#controls-reset-puzzle').on('click', function() {
+  	   		// $('.reset-puzzle').removeClass("ui-state-focus ui-state-hover");
   	   		setRadio('radio6');
 			var current_state_data = '';
 			for (var i=0; i < 81; i++) {
@@ -230,8 +229,8 @@
   		};
 
  	function check_solution() {
-  	   	$('.check-solution').on('click', function() {
-  	   		$('.check-solution').removeClass("ui-state-focus ui-state-hover");
+  	   	$('#controls-check-solution').on('click', function() {
+  	   		// $('.check-solution').removeClass("ui-state-focus ui-state-hover");
 			var current_state_data = '';
 			for (var i=0; i < 81; i++) {
 				if (($('#'+i).val()) != '') {
