@@ -35,9 +35,17 @@
   top: -9px;
   position: absolute;
   width: 22px;
-
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgb(200, 200, 200);
+}
+
+.range-handle:hover {
+    background-color: orange;
+}
+
+.range-handle:active {
+    background-color: orange;
 }
 
 .range-min {
