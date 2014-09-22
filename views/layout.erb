@@ -138,19 +138,23 @@
 			$('#radio7').attr("disabled", false);
    	   		var slider_data = document.querySelector('.slider').value;
   	   		var radio_button_data = (($("input[name=radio]:checked").val()));
-			$.post("/new_puzzle", 
- 				{
-					radio: slider_data
-  				}, function(data) {
-				for (var i=0; i < data.length; i++) {
-					if ((data.charAt(i)) != 0) {
-						$('#'+i).val(data.charAt(i));
-					} else {
-						$('#'+i).val('');
+  	   		$('.loader-container').fadeIn(50, function() {
+				$.post("/new_puzzle", 
+	 				{
+						radio: slider_data
+	  				}, function(data) {
+					for (var i=0; i < data.length; i++) {
+						if ((data.charAt(i)) != 0) {
+							$('#'+i).val(data.charAt(i));
+						} else {
+							$('#'+i).val('');
+						};
 					};
-				};
-          	},'text');
-  		});
+	          	},'text').success(function() {
+					$('.loader-container').fadeOut(100);
+				});
+  			});
+		});
   	};
 
  	function show_solution() {

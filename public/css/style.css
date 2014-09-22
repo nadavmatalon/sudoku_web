@@ -530,4 +530,11 @@ input {
 
 }
 
+.loader-container {
+	display: none;
+	position: absolute;
+	float: left;
+	margin-top: -44px;
+	margin-left: 27px;
+}
 
