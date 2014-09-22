@@ -332,7 +332,7 @@ input {
 
 }
 
-.sign-in-popup {
+.popup {
 	display: none;
 	z-index: 20;
 	background-color: transparent;

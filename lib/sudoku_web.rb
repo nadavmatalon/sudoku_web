@@ -19,11 +19,6 @@ get '/' do
 	erb :index
 end
 
-
-get '/update' do
-   Time.now.to_s  
-end
-
 post '/new_puzzle' do
 	grid = Grid.new PuzzleGenerator.generate_puzzle params[:radio].to_i
    	session[:current_puzzle] = grid.current_state
