@@ -5,6 +5,7 @@
 * [Screenshot](#screenshot)
 * [General Description](#general-description)
 * [What is Soduko](#what-is-soduko)
+* [See it Live on Heroku](#see-it-live-on-heroku)
 * [Browsers](#browsers)
 * [Testing](#testing)
 * [License](#license)
@@ -44,6 +45,16 @@ Here's a brief description of the game:
 > \* The grid contians 9 so-called 'boxes', that is 3x3 sub-grids within the general grid.
 
 (Source: [Wikipedia on Sudoku](http://en.wikipedia.org/wiki/Sudoku))
+
+
+##See it Live on Heroku
+
+A live version of the game can be found (and played!) at:
+
+[Sudoku on Heroku](http://makers-sudoku-web.herokuapp.com/)
+
+As I'm using Heroku's free hosting service, the app may take a bit of time to upload<br/>
+(Heroku's giros take time to wake up...), so please be patient.
 
 
 ##Browsers
