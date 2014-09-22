@@ -4,7 +4,7 @@
 
 * [Screenshot](#screenshot)
 * [General Description](#general-description)
-* [What is Soduko](#what-is-soduko)
+* [Functional Description](#functional-description)
 * [See it Live on Heroku](#see-it-live-on-heroku)
 * [Browsers](#browsers)
 * [Testing](#testing)
@@ -28,23 +28,44 @@ The app consists of the game of __Sudoku__ written in
 according to [TDD](http://en.wikipedia.org/wiki/Test-driven_development) 
 (testing with [Rspec](http://rspec.info/)).
 
-
-##What is Soduko
-
 Here's a brief description of the game:
 
 >__Sudoku__ is a logic-based combinatorial number-placement puzzle. 
 >
->The objective is to fill a grid made of 9x9 `squares` (81 in total) with digits  
->so that each `column`, each `row`, and each `box`* contains all of the digits 
->from 1 to 9. 
->
 >The puzzle setter provides a partially completed grid, which may have a unique 
 >solution or several possible solutions.
+>
+>The aim of the game is to fill a grid made of 9x9 `squares` (81 in total) 
+>with digits so that each `column`, each `row`, and each `box`* contains 
+>all of the digits from 1 to 9. 
 >
 > \* The grid contians 9 so-called 'boxes', that is 3x3 sub-grids within the general grid.
 
 (Source: [Wikipedia on Sudoku](http://en.wikipedia.org/wiki/Sudoku))
+
+
+##Functional Description
+
+* The app contains a built-in `Puzzle Generator` that can generate random puzzles 
+  at 5 levels of difficulty ranging from 'Very Easy' to 'Very Hard'.
+
+* To play, simply clicking on the `down arrow` to open up the Control Pannel, 
+  select the level of difficulty and click on `New Puzzle`.
+
+* At this point, you can close the Control Panel and start filling-in the blank 
+  spaces on the grid with numbers from 1 to 9 according to the rules of the game
+  (the app will only let you fill the empty squares with numbers from 1-9).
+
+* If you get stuck, you can toggle between the `Show Solution` &amp; 
+  `Hide Solution` views in the Control Panel (the app will remeber your current 
+  grid settings and will not delete any of the numbers you've added up to that 
+  point).
+
+* Alternatively, you can use the `Reset Puzzle` button to re-load the original 
+  puzzle and start again.
+
+* When you're done filling-in the all the numbers, click on the `Check Solution` 
+  button to find out if your solution is correct.
 
 
 ##See it Live on Heroku
