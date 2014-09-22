@@ -15,7 +15,7 @@
 
 <div width="400px" >
 	<a href="https://raw.githubusercontent.com/nadavmatalon/sudoku_web/master/public/images/sudoku-screenshot.png">
-		<img src="/public/images/sudoku-screenshot.png" width="400" height="400px" />
+		<img src="/public/images/sudoku-screenshot.png" width="400" height="420px" />
 	</a>
 </div>
 
