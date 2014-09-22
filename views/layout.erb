@@ -27,6 +27,21 @@
      	cache: false  
   	});
 
+	$('.controls-toggle-close').on('click', function() {
+	  	$('.controls-button-container').fadeOut(200);
+		$('.controls-toggle-close').hide();
+	  	$('.slider-container').fadeOut(200, function() {
+			$('#controls-header').removeClass('controls-header-hide').addClass('controls-header-show');
+			$('#controls-container').addClass('controls-container-close');
+			$('.controls-toggle-open').fadeIn(500, function() {
+				$('#controls-container').removeClass('controls-container');
+
+			});
+	  	});
+	});
+
+	$('.controls-toggle-close').click();
+
 	$(".new-puzzle").button();
 
 	$(".reset-puzzle").button();
@@ -35,7 +50,7 @@
 
 	$("#mode").buttonset();
 
-  	$(document).ready(function() { 
+  	$(document).ready(function() {
  		new_puzzle();
  		reset_puzzle();
  		show_solution();
@@ -96,6 +111,19 @@
         $(document).on('blur','input[type=text]',function() { 
         	get_current_state();
         });
+
+		$('.title-container').fadeIn(200, function() {
+
+			$('.container').fadeIn(50, function() {
+
+				$('#mask2').fadeOut(700, function() {
+					$('#mask2').remove();
+				});
+
+			});
+			
+		});
+
 
  	});
 
@@ -253,19 +281,6 @@
 		  	});
 		});
 	};
-
-	$('.controls-toggle-close').on('click', function() {
-	  	$('.controls-button-container').fadeOut(200);
-		$('.controls-toggle-close').hide();
-	  	$('.slider-container').fadeOut(200, function() {
-			$('#controls-header').removeClass('controls-header-hide').addClass('controls-header-show');
-			$('#controls-container').addClass('controls-container-close');
-			$('.controls-toggle-open').fadeIn(500, function() {
-				$('#controls-container').removeClass('controls-container');
-
-			});
-	  	});
-	});
 
 	$('.controls-toggle-open').on('click', function() {
 			$('#controls-container').removeClass('controls-container-close');
