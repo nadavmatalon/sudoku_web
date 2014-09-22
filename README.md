@@ -46,15 +46,16 @@ Here's a brief description of the game:
 
 ##Functional Description
 
-* The app contains a built-in `Puzzle Generator` that can generate random puzzles 
-  at 5 levels of difficulty ranging from 'Very Easy' to 'Very Hard'.
+* The app contains a built-in `Puzzle Generator` that can generate random 
+  puzzles at 5 different levels of difficulty, ranging from 
+  __Very Easy__ to __Very Hard__.
 
-* To play, simply clicking on the `down arrow` to open up the Control Pannel, 
-  select the level of difficulty and click on `New Puzzle`.
+* To start the game, click on the `Down Arrow` to open up the Control Pannel, 
+  select the level of difficulty you like and click on `New Puzzle`.
 
 * At this point, you can close the Control Panel and start filling-in the blank 
-  spaces on the grid with numbers from 1 to 9 according to the rules of the game
-  (the app will only let you fill the empty squares with numbers from 1-9).
+  spaces on the grid with numbers according to the rules of the game
+  (the app will only let you fill the empty squares with numbers from 1 to 9).
 
 * If you get stuck, you can toggle between the `Show Solution` &amp; 
   `Hide Solution` views in the Control Panel (the app will remeber your current 
