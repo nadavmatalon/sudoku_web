@@ -252,5 +252,36 @@
 		});
 	};
 
+	$('.controls-toggle-close').on('click', function() {
+	  	$('.controls-button-container').fadeOut(200);
+		$('.controls-toggle-close').hide();
+	  	$('.slider-container').fadeOut(200, function() {
+			$('#controls-container').addClass('controls-container-close');
+			$('.controls-toggle-open').fadeIn(500, function() {
+				$('#controls-container').removeClass('controls-container');
+			});
+	  	});
+	});
+
+	$('.controls-toggle-open').on('click', function() {
+			$('#controls-container').removeClass('controls-container-close');
+			$('#controls-container').addClass('controls-container');
+			$('.controls-toggle-open').fadeOut(200, function() {
+	  			$('.controls-button-container').fadeIn(200, function() {
+				$('.controls-toggle-close').fadeIn(200);
+
+
+	  			});
+	  			$('.slider-container').fadeIn(200);
+			});
+
+
+			// $('.controls-toggle-open').hide();
+			// $('.controls-container-open').addClass('controls-container-open');
+			// $('.controls-toggle-close').fadeOut(500, function() {
+			// });
+	  	
+	});
+
 </script>
 

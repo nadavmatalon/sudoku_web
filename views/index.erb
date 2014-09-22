@@ -4,7 +4,7 @@
 <div class='title-container'>
     <p class='controls-title'>Soduko</p>
 </div>
-<div class='controls-container'>
+<div class='controls-container' id='controls-container'>
     <div class='controls-button-container'>
         <button type='button' class='controls-button' id='controls-new-puzzle'>New Puzzle</button>
         <button type='button' class='controls-button' id='controls-reset-puzzle'>Reset Puzzle</button>
@@ -12,14 +12,13 @@
         <div id='mode'>
             <input type="radio" class='solution-button' id="radio6" name="mode" value='0' checked="checked"><label for="radio6">Hide Solution</label>
             <input type="radio" class='solution-button' id="radio7" name="mode" value='1'><label for="radio7">Show Solution</label>
-        </div>        
+        </div>              
     </div>
 
     <div class="sign-in-popup" id="sign-in-box">
         <input type="submit" class="close-button" id="close-button" value="x">
         <div id='puzzle-div'></div>
     </div>
-
 
 
     <div class='slider-container'>
@@ -37,6 +36,8 @@
         </div>
 
     </div>
+    <button class='controls-toggle-open'></button>  
+    <button class='controls-toggle-close'></button>  
 
 </div>
 <div class='container'>

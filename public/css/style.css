@@ -193,6 +193,11 @@ input {
 	margin-right: auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-ms-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
 }
 
 .controls-title {
@@ -203,6 +208,8 @@ input {
 	letter-spacing: 0.4px;
 	font-weight: 500;
 }
+
+
 
 
 .controls-button {
@@ -402,5 +409,96 @@ input {
 	padding-top: 80px;
 	font-size: 22px;
 	letter-spacing: 0.6px;
+}
+
+.controls-toggle-open {
+	display: none;
+	background-image: url('/images/arrow.png');
+	float: right;
+	margin-right: 7px;
+	margin-top: 0px;
+	font-size: 22px;
+	font-weight: 200;
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	border: none !important;
+	outline: none;
+}
+
+.controls-toggle-close {
+	background-image: url('/images/arrow.png');
+	transform: rotate(180deg); 
+	-ms-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	float: right;
+	margin-right: 7px;
+	margin-top: -42px;
+	font-size: 22px;
+	font-weight: 200;
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	border: none !important;
+	outline: none;
+}
+
+.controls-toggle-close:hover {
+	cursor: default;
+	outline: none;
+}
+
+.controls-toggle-close:active {
+	outline: none;
+}
+
+.controls-container-close {
+	display: block;
+	background-color: rgb(0, 0, 0);
+	text-align: center;
+	width: 460px;
+	border-radius: 6px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 15px;
+	padding-bottom: 6px;
+	-webkit-box-shadow: 3px 3px 9px #666;
+	-moz-box-shadow: 3px 3px 9px #666;
+	box-shadow: 3px 3px 9px #666;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-ms-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+	height: 30px;
+}
+
+.controls-container-open {
+	display: block;
+	background-color: rgb(0, 0, 0);
+	text-align: center;
+	width: 460px;
+	border-radius: 6px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 15px;
+	padding-bottom: 6px;
+	-webkit-box-shadow: 3px 3px 9px #666;
+	-moz-box-shadow: 3px 3px 9px #666;
+	box-shadow: 3px 3px 9px #666;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-ms-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+	height: 192px;
 }
 
