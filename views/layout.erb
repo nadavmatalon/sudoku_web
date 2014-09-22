@@ -95,7 +95,10 @@
     				level = 'Very Hard'
    	 			break;
 			};
-			document.getElementById('display-box').innerHTML = level;
+			$('#display-box').fadeOut(150, function() {
+					document.getElementById('display-box').innerHTML = level;
+				$('#display-box').fadeIn(150);
+			});
 			// console.log("slider: " + slider.value);
 			// console.log("level: " + level);
 		};
