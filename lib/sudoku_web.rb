@@ -7,7 +7,7 @@ set :public_dir, Proc.new {File.join(root, '..', "public")}
 
 enable :sessions
 
-set :session_secret, 'information'
+set :session_secret, ENV['SUDOKU_SECRET']
 
 set :logging, false
 
