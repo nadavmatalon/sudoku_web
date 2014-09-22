@@ -116,6 +116,45 @@ class Grid
 			puts "-" * 21 if index % 27 == 0 && index != NUMBER_OF_SQUARES
 		end
 		puts ""
+	end
+
+	def self.check_solution (puzzle = "0"*81)
+		grid = Grid.new puzzle
+		check_rows(grid) && check_columns(grid) && check_boxes(grid)
 	end	
+
+	def self.check_rows grid
+		result = []
+		for i in 1..9
+			values = []
+			array = grid.squares.select {|square| square.row == i }
+			array.each {|square| values << square.value }
+			result << ((1..9).to_a === values.sort!)
+		end
+		result.include?(false) ? false : true
+	end
+
+	def self.check_columns grid
+		result = []
+		for i in 1..9
+			values = []
+			array = grid.squares.select {|square| square.column == i }
+			array.each {|square| values << square.value }
+			result << ((1..9).to_a === values.sort!)
+		end
+		result.include?(false) ? false : true
+	end
+
+	def self.check_boxes grid
+		result = []
+		for i in 1..9
+			values = []
+			array = grid.squares.select {|square| square.box == i }
+			array.each {|square| values << square.value }
+			result << ((1..9).to_a === values.sort!)
+		end
+		result.include?(false) ? false : true
+	end
+
 end
 

@@ -105,7 +105,7 @@
         });
 
         $(document).on('blur','input[type=text]',function() { 
-        	if (!(($(this).val() > 0) && ($(this).val() < 9))) {
+        	if (!(($(this).val() > 0) && ($(this).val() < 10))) {
 				$(this).val('');
 			}       		
 	       	get_current_state();
@@ -131,7 +131,9 @@
   	function new_puzzle() {
   	   	$('#controls-new-puzzle').on('click', function() {
   	   		// setRadio('radio6');
-  	   		var slider_data = document.querySelector('.slider').value;
+			$('#radio6').attr("disabled", true);
+			$('#radio7').attr("disabled", false);
+   	   		var slider_data = document.querySelector('.slider').value;
   	   		var radio_button_data = (($("input[name=radio]:checked").val()));
 			$.post("/new_puzzle", 
  				{
