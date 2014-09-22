@@ -12,9 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 		<script type="text/javascript" src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
  		<script type="text/javascript" src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-		<script type="text/javascript" src="./javascript/switchery.js"></script>  
 		<script type="text/javascript" src="./javascript/powerange.js"></script>
-		<script type="text/javascript" src="./javascript/sudoku_web.js"></script>
 	</head>
 	<body>
 		<%= yield %>
@@ -26,14 +24,6 @@
   	$.ajaxSetup ({  
      	cache: false  
   	});
-
-	// var backImg, img;
-	// backImg = ['/images/button-open.png', '/images/button-close.png', '/images/button-open-hover.png', '/images/button-close-hover.png'];
-	// img = []; for (var i = backImg.length; i >= 0; i--) {
-	// 	img[i] = new Image();
-	// 	img[i].src = backImg[i];
-	// }
-
 
 	$('.controls-toggle-close').on('click', function() {
 	  	$('.controls-button-container').fadeOut(200);
@@ -48,15 +38,13 @@
 	  	});
 	});
 
-	$('.controls-toggle-close').click();
-
-	$(".new-puzzle").button();
-
-	$(".reset-puzzle").button();
-
-	$(".check-solution").button();
-
-	$("#mode").buttonset();
+	$(function() {
+		$('.controls-toggle-close').click();
+		$(".new-puzzle").button();
+		$(".reset-puzzle").button();
+		$(".check-solution").button();
+		$("#mode").buttonset();
+	});
 
   	$(document).ready(function() {
  		new_puzzle();
@@ -127,12 +115,8 @@
 				$('#mask2').fadeOut(700, function() {
 					$('#mask2').remove();
 				});
-
-			});
-			
+			});		
 		});
-
-
  	});
 
 // 	function setRadio(id) {

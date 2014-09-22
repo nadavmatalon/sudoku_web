@@ -26,7 +26,6 @@ input {
 	outline: none !important;
 }
 
-
 .new-puzzle, .reset-puzzle, .check-solution {
 	background-image: none !important;
 	background-color: rgb(178, 240, 253) !important;
@@ -209,9 +208,6 @@ input {
 	font-weight: 500;
 }
 
-
-
-
 .controls-button {
 	font-size: 15px;
 	font-weight: 200;
@@ -303,16 +299,6 @@ input {
 	background-color: rgba(150, 150, 150, 0.4) !important;
 	cursor: default !important;
 }
-/*
-.ui-state-active {
-	background-image: none !important;
-	background-color: rgb(167, 234, 198) !important;
-	color: black !important;
-}
-
-*/
-
-
 
 .square {
 	background-color: rgba(200, 200, 200, 0.25);
@@ -336,7 +322,6 @@ input {
 	padding-top: 4px;
 	margin-left: -1px;
 }
-
 
 .popup-container {
 	width: 100%;
