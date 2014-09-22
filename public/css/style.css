@@ -365,7 +365,7 @@ input {
 	float: right;
 	display: inline-block;
 	margin-top: -11px;
-	margin-right: 3px;
+	margin-right: -25px;
 	margin-bottom: -3px;
 	color: rgb(170, 170, 170) !important;
 	border: none;
@@ -409,6 +409,7 @@ input {
 	padding-top: 80px;
 	font-size: 22px;
 	letter-spacing: 0.6px;
+	margin-left: 37px;
 }
 
 .controls-toggle-open {
@@ -416,7 +417,7 @@ input {
 	background-image: url('/images/arrow.png');
 	float: right;
 	margin-right: 7px;
-	margin-top: 0px;
+	margin-top: 1px;
 	font-size: 22px;
 	font-weight: 200;
 	background-size: 20px 20px;
@@ -501,4 +502,19 @@ input {
 	transition: all 0.5s ease-out;
 	height: 192px;
 }
+
+.controls-header-show {
+	display: inline-block;
+	color: white;
+	font-size: 20px;
+	margin-top: 1px;
+	margin-left: 35px;
+	letter-spacing: 0.4px;
+}
+
+.controls-header-hide {
+	display: none;
+
+}
+
 

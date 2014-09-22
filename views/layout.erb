@@ -226,6 +226,7 @@
 			};
 			if (current_state_data != '000000000000000000000000000000000000000000000000000000000000000000000000000000000') {
 		  	   	$('.slider-container').fadeOut(200);
+				$('.controls-toggle-close').fadeOut(200);
 				$('.controls-button-container').fadeOut(200, function() {
 					$('.sign-in-popup').fadeIn(200);
 					$('#mask').removeClass('hiding');		
@@ -244,6 +245,7 @@
 	function close_button() {
 		$('#close-button, #mask').on('click', function() { 
 		  	$('.sign-in-popup').fadeOut(200, function(){
+		  		$('.controls-toggle-close').fadeIn(200);
 		  		$('#mask').removeClass('showing'); 
 		  		$('#mask').addClass('hiding'); 
 		  		$('.controls-button-container').fadeIn(200);
@@ -256,9 +258,11 @@
 	  	$('.controls-button-container').fadeOut(200);
 		$('.controls-toggle-close').hide();
 	  	$('.slider-container').fadeOut(200, function() {
+			$('#controls-header').removeClass('controls-header-hide').addClass('controls-header-show');
 			$('#controls-container').addClass('controls-container-close');
 			$('.controls-toggle-open').fadeIn(500, function() {
 				$('#controls-container').removeClass('controls-container');
+
 			});
 	  	});
 	});
@@ -266,6 +270,7 @@
 	$('.controls-toggle-open').on('click', function() {
 			$('#controls-container').removeClass('controls-container-close');
 			$('#controls-container').addClass('controls-container');
+			$('#controls-header').removeClass('controls-header-show').addClass('controls-header-hide');
 			$('.controls-toggle-open').fadeOut(200, function() {
 	  			$('.controls-button-container').fadeIn(200, function() {
 				$('.controls-toggle-close').fadeIn(200);
