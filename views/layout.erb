@@ -98,15 +98,15 @@
 
  	});
 
-	function setRadio(id) {
-    	var radio = $('#' + id);
-    	radio[0].checked = true;
-    	radio.button("refresh");
-	}
+	// function setRadio(id) {
+ //    	var radio = $('#' + id);
+ //    	radio[0].checked = true;
+ //    	radio.button("refresh");
+	// }
 
   	function new_puzzle() {
   	   	$('#controls-new-puzzle').on('click', function() {
-  	   		setRadio('radio6');
+  	   		// setRadio('radio6');
   	   		var slider_data = document.querySelector('.slider').value;
   	   		var radio_button_data = (($("input[name=radio]:checked").val()));
 			$.post("/new_puzzle", 
@@ -126,7 +126,8 @@
 
  	function show_solution() {
  		$('#radio7').on('click', function() {
- 			console.log('show_solution'); 
+ 			$('#radio7').attr("disabled", true);
+ 			$('#radio6').attr("disabled", false);
  			var current_state_data = '';
 			for (var i=0; i < 81; i++) {
 				if (($('#'+i).val()) != '') {
@@ -148,7 +149,8 @@
 
  	function hide_solution() {
  		$('#radio6').on('click', function() {
- 			console.log('hide_solution'); 
+ 			$('#radio7').attr("disabled", false);
+ 			$('#radio6').attr("disabled", true);
 			var current_state_data = '';
 			for (var i=0; i < 81; i++) {
 				if (($('#'+i).val()) != '') {
@@ -186,7 +188,8 @@
 
  	function reset_puzzle() {
   	   	$('#controls-reset-puzzle').on('click', function() {
-  	   		setRadio('radio6');
+ 			$('#radio6').attr("disabled", true);
+			$('#radio7').attr("disabled", false);
 			var current_state_data = '';
 			for (var i=0; i < 81; i++) {
 				if (($('#'+i).val()) != '') {
