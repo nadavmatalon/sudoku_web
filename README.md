@@ -23,8 +23,9 @@
 ##General Description
 
 The app consists of the game of __Sudoku__ written in 
-[Ruby](https://www.ruby-lang.org/en/) &amp; 
-[JavaScript](http://en.wikipedia.org/wiki/JavaScript) 
+[Ruby](https://www.ruby-lang.org/en/), 
+[JavaScript](http://en.wikipedia.org/wiki/JavaScript) &amp; 
+[jQuery](http://jquery.com) 
 according to [TDD](http://en.wikipedia.org/wiki/Test-driven_development) 
 (testing with [Rspec](http://rspec.info/)).
 
