@@ -12,7 +12,7 @@
 	}).on('blur','input[type=text]', function() {
 		if (!(($(this).val() > 0) && ($(this).val() < 10))) {
 			$(this).val(original_square_value);
-		} 		
+		}
 	});
 
 	var slider = document.querySelector('#slider');
