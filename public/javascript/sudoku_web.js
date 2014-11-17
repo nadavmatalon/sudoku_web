@@ -6,9 +6,9 @@
 
 	var original_square_value;
 
-	$(document).on('click','input[type=text]', function() { 
+	$(document).on('click','input[type=text]', function() {
 		original_square_value = $(this).val();
-		this.select(); 
+		this.select();
 	}).on('blur','input[type=text]', function() {
 		if (!(($(this).val() > 0) && ($(this).val() < 10))) {
 			$(this).val(original_square_value);
