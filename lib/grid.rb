@@ -1,160 +1,127 @@
-require_relative 'square'
-
 class Grid
 
-	NUMBER_OF_COLUMNS = 9
-	NUMBER_OF_ROWS = 9
-	NUMBER_OF_BOXES = 9
-	NUMBER_OF_SQUARES = 81
+	attr_accessor :puzzle
 
-	EASY_PUZZLE = '015003002000100906270068430490002017501040380003905000900081040860070025037204600'
-	MEDIUM_PUZZLE = '000200001060075000057004060900000608000080000005630040500003000002000930708000014'
-	HARD_PUZZLE = '800000000003600000070090200050007000000045700000100030001000068008500010090000400'
-
-	attr_reader :squares
-
-	def initialize (puzzle = nil)
-		@squares = generate_squares
-		upload puzzle unless puzzle.nil?
-	end
- 
-	def generate_squares
- 		squares, row, column, box, value = [], 1, 1, 1, 0
-		for index in 1..NUMBER_OF_SQUARES do
-			squares << Square.new(index - 1, row, column, box, value)
-			column < 9 ? column += 1 : (column = 1 ; row += 1)
-			box += 1 if ((column - 1) % 3) == 0
-			box = 1 if index % 9 == 0 && row <= 3
-			box = 4 if index % 9 == 0 && row >= 4 && row <= 6
-			box = 7 if index % 9 == 0 && row >= 7
-		end 
-		squares		
- 	end
-
-  	def upload puzzle
-		squares.each_with_index { |sq, i| sq.value = puzzle.chars[i].to_i }
-  	end	
-
-	def peers_for index
-		selected = squares[index]
-		row, column, box = selected.row, selected.column, selected.box
-		peers = squares.select { |sq| sq if sq.row == row || sq.column == column || sq.box == box }
- 	 	peers - [selected]
+	def initialize (puzzle = '0' * 81)
+		upload puzzle
 	end
 
-	def values_of peers
-		peers.map { |peer| peer.value unless peer.value == 0 }.compact.uniq.sort
+	def upload puzzle
+		@puzzle = puzzle.chars.map(&:to_i)
+	end
+
+	def get_value_at index
+		puzzle[index]
+	end
+
+	def set_value_at index, value
+		puzzle[index] = value
+	end
+
+	def puzzle_to_str
+		@puzzle.join
+	end
+
+	def solved_at? index
+		get_value_at(index) != 0
+	end
+
+	def puzzle_solved?
+		square_values = puzzle_rows + puzzle_columns + puzzle_boxes
+		square_values.map { |values| values.sort == (1..9).to_a }.all?
+	end
+
+	def puzzle_rows
+		puzzle.each_slice(9).to_a
+	end
+
+	def puzzle_columns
+		puzzle_rows.transpose
+	end
+
+	def puzzle_boxes
+		(0..2).inject([]) do |boxes, index|
+			boxes + puzzle_rows.slice(3 * index, 3).transpose.each_slice(3).map(&:flatten)
+		end
+	end
+
+	def peer_values_of index
+		peers = puzzle_rows[index/9] + puzzle_columns[index%9] + puzzle_boxes[box_of(index)]
+		peers.flatten.sort.uniq.reject { |value| value == (0 or value_of(index)) }
+	end
+
+	def box_of index
+		grid_clone, grid_clone.puzzle = self.clone, (0..80).to_a
+		grid_clone.puzzle_boxes.map { |boxes| boxes & [index] }.index([index])
 	end
 
 	def candidates_for index
-		candidates = (1..9).to_a - values_of(peers_for index)
-		unsolved?(index) ? candidates.sort : []
+		candidates = (1..9).to_a - peer_values_of(index)
+		candidates.sort if !solved_at?(index)
 	end
 
-	def unsolved? index
-		squares[index].value == 0
+	def solve_at index
+		solutions = candidates_for(index) || []
+		set_value_at(index, solutions.first) if solutions.count == 1
 	end
 
-  	def fully_solved?
-  		squares.count(&:unsolved?) == 0
-  	end
-
-	def solve 
-		start_time, current_state, stop_looping = Time.now, NUMBER_OF_SQUARES, false
-		while !fully_solved? && !stop_looping
-			squares.each { |square| solve_square_in square.index }
-			new_state = squares.count(&:solved?)
-			stop_looping = true if current_state == new_state || Time.now - start_time > 0.75
-			current_state = new_state
-		end
-		try_again unless fully_solved? || Time.now - start_time > 1.50
-		fully_solved? ? "SOLVED IT!" : "COULDN'T SOLVE IT!"
+	def solve_puzzle
+		first_attempt_to_solve
+		second_attempt_to_solve unless puzzle_solved?
+		puzzle_solved?
 	end
 
-  	def solve_square_in index
-  		if unsolved? index
-  			candidates = candidates_for index
-  			squares[index].value = candidates.first if candidates.count == 1
-  		end
-	end
-
-	def legit_solution? index, value
-		candidates = candidates_for index
-		candidates.include? value
-	end
-
-	def try_again
-		empty_square = squares.reject(&:solved?).first
-		candidates = candidates_for empty_square.index
-		candidates.each do |candidate|
-			empty_square.set candidate
-			grid = duplicate
-			grid.solve
-			upload_solution_to grid and return if grid.fully_solved?
+	def first_attempt_to_solve
+		current_puzzle_state, stop_looping = 81, false
+		while !puzzle_solved? && !stop_looping
+			new_puzzle_state = solve_all_squares
+			stop_looping = true if current_puzzle_state == new_puzzle_state
+			current_puzzle_state = new_puzzle_state
 		end
 	end
 
-	def duplicate
-		self.class.new(self.current_state)
-	end
-
-  	def current_state 
-  		squares.map {|square| square.value}.join
-  	end
-
-	def upload_solution_to grid
-		upload grid.current_state
-	end
-
-	def print_in_terminal
- 		puts ""
-		squares.select  do |square|
-			index = square.index + 1
-			print square.value.to_s + " "
-			print "| " if index % 3 == 0 && index % 9 != 0
-			puts "" if index % 9 == 0
-			puts "-" * 21 if index % 27 == 0 && index != NUMBER_OF_SQUARES
+	def second_attempt_to_solve
+		empty_index = find_first_unsolved_square
+ 		candidates_for(empty_index).each do |candidate|
+			set_value_at empty_index, candidate
+			grid = self.class.new(self.puzzle_to_str)
+			upload grid.puzzle_to_str and return if grid.solve_puzzle
 		end
-		puts ""
 	end
 
-	def self.check_solution (puzzle = "0"*81)
-		grid = Grid.new puzzle
-		check_rows(grid) && check_columns(grid) && check_boxes(grid)
-	end	
+	def solve_all_squares
+		puzzle.each_with_index { |square, index| solve_at(index) }
+		puzzle.count { |square| square != 0 }
+	end
 
-	def self.check_rows grid
-		result = []
-		for i in 1..9
-			values = []
-			array = grid.squares.select {|square| square.row == i }
-			array.each {|square| values << square.value }
-			result << ((1..9).to_a === values.sort!)
+	def find_first_unsolved_square
+		puzzle.index(0)
+	end
+
+	def upload_new_puzzle (level = 3)
+		upload_new_puzzle_seed
+		solve_puzzle ? punch_puzzle(level * 10 + 21) : upload_new_puzzle(level)
+	end
+
+	def upload_new_puzzle_seed
+		puzzle, indices = Array.new(81, 0), indices_of_box(0, 4, 8)
+		for index in 0..2
+			values = (1..9).to_a.shuffle
+			indices[index].map.with_index { |square, position| set_value_at(square, values[position]) }
 		end
-		result.include?(false) ? false : true
 	end
 
-	def self.check_columns grid
-		result = []
-		for i in 1..9
-			values = []
-			array = grid.squares.select {|square| square.column == i }
-			array.each {|square| values << square.value }
-			result << ((1..9).to_a === values.sort!)
+	def indices_of_box *box_number
+		grid_clone, grid_clone.puzzle = self.clone, (0..80).to_a
+		indices = box_number.collect { |box| grid_clone.puzzle_boxes[box].sort }
+		box_number.count > 1 ? indices : indices.first
+	end
+
+	def punch_puzzle punches
+		while punches > 0
+			random_square = rand(0..80)
+			set_value_at(random_square, 0) and punches -= 1 if solved_at?(random_square)
 		end
-		result.include?(false) ? false : true
 	end
-
-	def self.check_boxes grid
-		result = []
-		for i in 1..9
-			values = []
-			array = grid.squares.select {|square| square.box == i }
-			array.each {|square| values << square.value }
-			result << ((1..9).to_a === values.sort!)
-		end
-		result.include?(false) ? false : true
-	end
-
 end
 

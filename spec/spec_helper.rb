@@ -1,4 +1,4 @@
-require './lib/sudoku_web.rb'
+require './app/sudoku_web.rb'
 require 'capybara/poltergeist'
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
@@ -23,3 +23,4 @@ end
 RSpec.configure do |config|
 	config.include Capybara::DSL, type: :feature
 end
+
