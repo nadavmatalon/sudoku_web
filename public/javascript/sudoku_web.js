@@ -100,7 +100,7 @@
 	});
 
 	$('#controls-check-solution').on('click', function() {
-		if (getPuzzleCurrentState() !== Array(81).join('0')) {
+		if (getPuzzleCurrentState() != new Array(82).join('0')) {
 			$.each(['#difficulty-level-container', '#controls-close-pane-button'], function(index, element) {
 				$(element).fadeOut(200);
 			});
