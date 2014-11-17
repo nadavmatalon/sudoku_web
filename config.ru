@@ -1,3 +1,3 @@
-require "./lib/sudoku_web.rb"
+require "./app/sudoku_web.rb"
 run Sinatra::Application
 
