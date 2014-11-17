@@ -87,7 +87,7 @@
 
 	$('#controls-check-solution').click(function() {
 		var currentState = getPuzzleCurrentState();
-		if (currentState != new Array(82).join('0')) {
+		if (currentState !== new Array(82).join('0')) {
 			$.each(['#difficulty-level-container', '#controls-close-pane-button'], function(index, element) {
 				$(element).fadeOut(200);
 			});
