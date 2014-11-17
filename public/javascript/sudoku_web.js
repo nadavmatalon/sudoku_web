@@ -1,7 +1,7 @@
 (function() {
 
-	$.ajaxSetup ({  
-	 	cache: false  
+	$.ajaxSetup ({
+		cache: false
 	});
 
 	var original_square_value;
@@ -35,15 +35,15 @@
 		slider.innerHTML = slider.value;
 		switch (slider.value) {
 			case '1': difficultyLevel = 'Very Easy'; break;
-			case '2': difficultyLevel = 'Easy';	     break;
-			case '3': difficultyLevel = 'Medium';    break;
-			case '4': difficultyLevel = 'Hard';	     break;
+			case '2': difficultyLevel = 'Easy'; break;
+			case '3': difficultyLevel = 'Medium'; break;
+			case '4': difficultyLevel = 'Hard'; break;
 			case '5': difficultyLevel = 'Very Hard'; break;
 		}
 		$('#difficulty-level-display').fadeOut(150, function() {
 			$(this).text(difficultyLevel).fadeIn(150);
 		});
-	}
+	};
 
 	$('#solution-buttons-container').buttonset();
 	$('#controls-button-container').hide();
@@ -75,9 +75,8 @@
 				difficulty_level: document.querySelector('#slider').value
 				}, function(data) {
 					mapPuzzle(data);
-		  		},'text'
-		  	).success(function() {
-				$('#loader-container').fadeOut(100);
+				},'text').success(function() {
+					$('#loader-container').fadeOut(100);
 			});
 		});
 	});
@@ -101,7 +100,7 @@
 	});
 
 	$('#controls-check-solution').on('click', function() {
-		if (getPuzzleCurrentState() != '000000000000000000000000000000000000000000000000000000000000000000000000000000000') {
+		if (getPuzzleCurrentState() !== '000000000000000000000000000000000000000000000000000000000000000000000000000000000') {
 			$.each(['#difficulty-level-container', '#controls-close-pane-button'], function(index, element) {
 				$(element).fadeOut(200);
 			});
@@ -120,17 +119,17 @@
 	});
 
 	$('#check-solution-pane-close').on('click', function() { 
-	  	$('#check-solution-pane').fadeOut(200, function() {
+		$('#check-solution-pane').fadeOut(200, function() {
 			$.each(['#controls-close-pane-button', '#controls-button-container', '#difficulty-level-container'], function(index, element) {
 				$(element).fadeIn(200);
-	  		});
-	  	});
+			});
+		});
 	});
 
 	function getPuzzleCurrentState() {
 		var currentStateData = '';
 		for (var index = 0; index < 81; index++) {
-			if (($('#'+index).val()) != '') {
+			if (($('#'+index).val()) !== '') {
 				currentStateData = (currentStateData + ($('#'+index).val()));
 			} else {
 				currentStateData = (currentStateData + '0');
@@ -151,7 +150,7 @@
 
 	function mapPuzzle(data) {
 		for (var index = 0; index < data.length; index++) {
-			if ((data.charAt(index)) != 0) {
+			if ((data.charAt(index)) !== '0') {
 				$('#'+index).val(data.charAt(index));
 			} else {
 				$('#'+index).val('');
