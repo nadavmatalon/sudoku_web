@@ -7,6 +7,7 @@
 * [Screenshot](#screenshot)
 * [General Description](#general-description)
 * [Functional Description](#functional-description)
+* [How to Install and Run](#how-to-install-and-run)
 * [See it Live on Heroku](#see-it-live-on-heroku)
 * [Browsers](#browsers)
 * [Testing](#testing)
@@ -57,12 +58,12 @@ For those who don't know it, here's a brief description of the game:
 
 ##Functional Description
 
-* The app contains a built-in `Puzzle Generator` that can generate random 
+* The app contains a single class called 'Grid' that can generate and solve random 
   puzzles at 5 different levels of difficulty, ranging from 
   __Very Easy__ to __Very Hard__.
 
-* To start the game, click on the `Down Arrow` to open up the Control Pannel, 
-  select the level of difficulty you like and click on `New Puzzle`.
+* To start the game, click on the arrow to open the Control Panel, 
+  select the level of difficulty you like on the slider and click on `New Puzzle`.
 
 * At this point, you can close the Control Panel and start filling-in the blank 
   spaces on the grid with numbers according to the rules of the game
@@ -73,11 +74,51 @@ For those who don't know it, here's a brief description of the game:
   grid settings and will not delete any of the numbers you've added up to that 
   point).
 
-* Alternatively, you can use the `Reset Puzzle` button to re-load the original 
+* If you want, you can use the `Reset Puzzle` button to re-load the original 
   puzzle and start again.
 
 * When you're done filling-in the all the numbers, click on the `Check Solution` 
-  button to find out if your solution is correct.
+  button and find out if your solution is correct.
+
+
+##How to Install and Run
+
+To install the app, __clone the repo__ to a local folder and then run the 
+following commands in terminal:
+
+```
+$> cd sudoku_web
+$> bundle install
+
+```
+
+Then you'll need to create an __enviromental variable__
+in your machine for the `session secret key`.
+
+The name of this env variable should be: SUDOKU_SECRET, and you 
+can give it any value you like.
+
+If you want a random string for this variable's value, you can 
+use the following commands in terminal to generate it:
+
+```
+$> irb
+#> SecureRandom.hex(20)
+$> exit
+```
+
+Finally, run the local server:
+
+```
+$> thin start
+```
+
+After running these setup commands, open the browser of your 
+choice and go to this address:
+
+```
+http://localhost:3000/
+```
 
 
 ##See it Live on Heroku
@@ -103,13 +144,14 @@ it should hopefully look decent in other browsers as well):
 ##Testing
 
 Unit and feature tests for the back-end logic and front-end interface 
-were written with [Rspec](http://rspec.info/) (3.1.7) 
+were written with [Rspec](http://rspec.info/) (3.1.7) &amp;  
 [Capybara](https://github.com/jnicklas/capybara) (2.4.1)).
 
-To run the tests:
+To run the tests, clone the repo to a local folder and then run:
 
 ```bash
 $> cd sudoku_web
+$> bundle install
 $> rspec
 ```
 
