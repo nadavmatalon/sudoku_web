@@ -1,5 +1,7 @@
 #Sudoku: Web Version
 
+[![Code Climate](https://codeclimate.com/github/nadavmatalon/sudoku_web/badges/gpa.svg)](https://codeclimate.com/github/nadavmatalon/sudoku_web)
+
 ## Table of Contents
 
 * [Screenshot](#screenshot)
@@ -22,14 +24,22 @@
 
 ##General Description
 
-The app consists of the game of __Sudoku__ written in 
-[Ruby](https://www.ruby-lang.org/en/), 
-[JavaScript](http://en.wikipedia.org/wiki/JavaScript) &amp; 
-[jQuery](http://jquery.com) 
-according to [TDD](http://en.wikipedia.org/wiki/Test-driven_development) 
-(testing with [Rspec](http://rspec.info/)).
+This app implements the game of __Sudoku__ which was written 
+following the course at [Makers Academy](http://www.makersacademy.com/).
 
-Here's a brief description of the game:
+The back-end logic of the app is written in 
+[Ruby](https://www.ruby-lang.org/en/) (2.1.1), and the front-end interface
+in [JavaScript](http://en.wikipedia.org/wiki/JavaScript) &amp; 
+[jQuery](http://jquery.com), all done
+according to [TDD](http://en.wikipedia.org/wiki/Test-driven_development) 
+(testing with [Rspec](http://rspec.info/) &amp; 
+[Capybara](https://github.com/jnicklas/capybara)).
+
+__Update (17.11.14)__ : I've re-written the app from scratch 
+to generate a more cohesive and cleaner code.
+
+
+For those who don't know it, here's a brief description of the game:
 
 >__Sudoku__ is a logic-based combinatorial number-placement puzzle. 
 >
@@ -92,15 +102,16 @@ it should hopefully look decent in other browsers as well):
 
 ##Testing
 
-Tests were written with [Rspec](http://rspec.info/) (3.0.4).
+Unit and feature tests for the back-end logic and front-end interface 
+were written with [Rspec](http://rspec.info/) (3.1.7) 
+[Capybara](https://github.com/jnicklas/capybara) (2.4.1)).
 
-To run the testing suite in terminal: 
+To run the tests:
 
 ```bash
 $> cd sudoku_web
 $> rspec
 ```
-
 
 ##License
 
