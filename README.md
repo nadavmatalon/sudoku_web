@@ -66,9 +66,14 @@ As for playing the game:
   puzzles at 5 different levels of difficulty, ranging from 
   __Very Easy__ to __Very Hard__.
 
-* Players can upload a new puzzle at the difficulty level of their choice, 
-  fill-in the missing blanks, check the status of their solution, and even 
-  'cheat' a little by switching between the show and hide solution options.
+* Players can upload a new puzzle at a difficulty level of their choice.
+  While generating the puzzle, the app will show a small dynamic 'loader' image 
+  inside the Controls Panel to indicate that the background operation is currently 
+  running.
+
+* After the puzzle has been uploaded, players can fill-in the missing blanks, 
+  check the status of their solution, and even 'cheat' a little by switching 
+  between the show and hide solution options.
 
 * To start the game, click on the arrow to open the Control Panel, 
   select the level of difficulty you like on the slider and click on `New Puzzle`.
