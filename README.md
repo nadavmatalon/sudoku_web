@@ -89,7 +89,6 @@ following commands in terminal:
 ```
 $> cd sudoku_web
 $> bundle install
-
 ```
 
 Then you'll need to create an __enviromental variable__
