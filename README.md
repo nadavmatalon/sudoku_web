@@ -28,19 +28,24 @@
 This app implements the game of __Sudoku__ which was written 
 following the course at [Makers Academy](http://www.makersacademy.com/).
 
-The back-end logic of the app is written in 
-[Ruby](https://www.ruby-lang.org/en/) (2.1.1), and the front-end interface
-in [JavaScript](http://en.wikipedia.org/wiki/JavaScript) &amp; 
-[jQuery](http://jquery.com), all done
-according to [TDD](http://en.wikipedia.org/wiki/Test-driven_development) 
+* The back-end logic of the app is written in 
+[Ruby](https://www.ruby-lang.org/en/) (2.1.1).
+* The front-end interface
+is written in [JavaScript](http://en.wikipedia.org/wiki/JavaScript) &amp; 
+[jQuery](http://jquery.com).
+* Code created according to [TDD](http://en.wikipedia.org/wiki/Test-driven_development) 
 (testing with [Rspec](http://rspec.info/) &amp; 
 [Capybara](https://github.com/jnicklas/capybara)).
+* The app uses the [Sinatra](http://www.sinatrarb.com/) framework 
+and [Thin Webserver](https://github.com/macournoyer/thin/).
 
-__Update (17.11.14)__ : I've re-written the app from scratch 
+__Update (17.11.14)__ : I've re-written the entire app from scratch 
 to generate a more cohesive and cleaner code.
 
 
-For those who don't know it, here's a brief description of the game:
+##Functional Description
+
+For those who aren't familiar with the game, here's a brief description:
 
 >__Sudoku__ is a logic-based combinatorial number-placement puzzle. 
 >
@@ -55,12 +60,15 @@ For those who don't know it, here's a brief description of the game:
 
 (Source: [Wikipedia on Sudoku](http://en.wikipedia.org/wiki/Sudoku))
 
-
-##Functional Description
+As for playing the game:
 
 * The app contains a single class called 'Grid' that can generate and solve random 
   puzzles at 5 different levels of difficulty, ranging from 
   __Very Easy__ to __Very Hard__.
+
+* Players can upload a new puzzle at the difficulty level of their choice, 
+  fill-in the missing blanks, check the status of their solution, and even 
+  'cheat' a little by switching between the show and hide solution options.
 
 * To start the game, click on the arrow to open the Control Panel, 
   select the level of difficulty you like on the slider and click on `New Puzzle`.
@@ -92,7 +100,7 @@ $> bundle install
 ```
 
 Then you'll need to create an __enviromental variable__
-in your machine for the `session secret key`.
+in your machine for [Sinatra](http://www.sinatrarb.com/)'s `session secret key`.
 
 The name of this env variable should be: SUDOKU_SECRET, and you 
 can give it any value you like.
@@ -157,6 +165,4 @@ $> rspec
 ##License
 
 <p>Released under the <a href="http://www.opensource.org/licenses/MIT">MIT license</a>.</p>
-
-
 
