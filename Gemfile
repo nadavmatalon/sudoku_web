@@ -8,9 +8,8 @@ gem 'sinatra', '~> 1.4'
 gem 'thin', '~> 1.6.2'
 
 group :test, :development do
-
     #https://github.com/rtomayko/shotgun
-	gem 'shotgun', '~> 0.9'
+    gem 'shotgun', '~> 0.9'
     # https://github.com/jnicklas/capybara
     gem 'capybara', '~> 2.4.1'
     # https://github.com/copiousfreetime/launchy
