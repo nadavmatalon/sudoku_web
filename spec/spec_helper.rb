@@ -16,11 +16,11 @@ Capybara.register_driver :poltergeist do |app|
 end
 
 Capybara.server do |app, port|
-	require 'rack/handler/thin'
-	Rack::Handler::Thin.run(app, Port: port)
+  require 'rack/handler/thin'
+  Rack::Handler::Thin.run(app, Port: port)
 end
 
 RSpec.configure do |config|
-	config.include Capybara::DSL, type: :feature
+  config.include Capybara::DSL, type: :feature
 end
 
