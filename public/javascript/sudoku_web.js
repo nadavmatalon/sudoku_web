@@ -1,3 +1,5 @@
+"use strict";
+
 (function() {
 
 	$.ajaxSetup ({
@@ -69,11 +71,13 @@
 				difficulty_level: document.querySelector('#slider').value
 				}, function(data) {
 					mapPuzzle(data);
-				},'text').success(function() {
-					$('#loader-container').fadeOut(100);
-			});
+				},'text').success(fadeLoaderContainer);
 		});
 	});
+
+	function fadeLoaderContainer() {
+			$('#loader-container').fadeOut(100);
+		}
 
 	$('.reset-show-hide-buttons').click(function() {
 		var serverAddress;
