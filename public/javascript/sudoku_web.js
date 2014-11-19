@@ -115,7 +115,7 @@
   function getPuzzleCurrentState() {
     var currentStateData = '';
     for (var index = 0; index < 81; index++) {
-      (($('#'+index).val()) === '') ? currentStateData += '0'; ? currentStateData += $('#'+index).val();
+      (($('#'+index).val()) === '') ? currentStateData += '0' : currentStateData += $('#'+index).val();
     }
     return currentStateData;
   }
