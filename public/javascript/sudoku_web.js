@@ -80,9 +80,20 @@
   $('.reset-show-hide-buttons').click(function() {
     var serverAddress;
     switch ($(this).attr('id')) {
-      case 'controls-reset-puzzle': serverAddress = 'reset_puzzle'; break;
-      case 'solution-show-button': serverAddress = '/show_solution'; break;
-      case 'solution-hide-button': serverAddress = '/hide_solution'; break;
+      case 'controls-reset-puzzle': 
+        serverAddress = 'reset_puzzle';
+        $('#solution-show-button').prop('disabled', false);
+        break;
+      case 'solution-show-button': 
+        serverAddress = '/show_solution'; 
+        $('#solution-show-button').prop('disabled', true);
+        $('#solution-hide-button').prop('disabled', false);
+        break;
+      case 'solution-hide-button': 
+        serverAddress = '/hide_solution'; 
+        $('#solution-hide-button').prop('disabled', true);
+        $('#solution-show-button').prop('disabled', false);
+        break;
     }
     sendPuzzleCurrentState(serverAddress);
   });
@@ -106,7 +117,7 @@
     }
   });
 
-  $('#check-solution-pane-close').click(function() { 
+  $('#check-solution-pane-close').click(function() {
     $('#check-solution-pane').fadeOut(200, function() {
       $('#controls-close-pane-button').add('#controls-button-container').add('#difficulty-level-container').fadeIn(200);
     });
