@@ -83,6 +83,7 @@
       case 'controls-reset-puzzle': 
         serverAddress = 'reset_puzzle';
         $('#solution-show-button').prop('disabled', false);
+        $('#solution-hide-button').prop('disabled', true);
         break;
       case 'solution-show-button': 
         serverAddress = '/show_solution'; 
