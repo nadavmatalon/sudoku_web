@@ -111,7 +111,7 @@ describe Grid do
       end
 
       it 'grid can solve an empty puzzle' do
-        expect(grid_with_puzzle.solve_puzzle).to be true
+        expect(grid.solve_puzzle).to be true
       end
 
       it 'grid can solve a very easy puzzle' do
