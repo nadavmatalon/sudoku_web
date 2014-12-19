@@ -1,6 +1,4 @@
-describe Grid, type: :feature  do
-
-  let (:grid) { Grid.new }
+describe Game, type: :feature  do
 
   subject { page }
 

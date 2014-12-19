@@ -1,4 +1,4 @@
-require './lib/grid.rb'
+require './lib/game.rb'
 require 'sinatra'
 
 set :views, proc { File.join(root, '..', 'views') }
@@ -15,11 +15,9 @@ get '/' do
 end
 
 post '/new_puzzle' do
-  grid = Grid.new
-  grid.upload_new_puzzle params[:difficulty_level].to_i
-  session[:current_puzzle] = grid.puzzle_to_str
-  grid.solve_puzzle
-  session[:puzzle_solution] = grid.puzzle_to_str
+  game = Game.new(params[:difficulty_level].to_i)
+  session[:current_puzzle] = game.current_state
+  session[:puzzle_solution] = game.solution_str
   session[:current_puzzle_state] = session[:current_puzzle]
 end
 
@@ -38,12 +36,22 @@ end
 
 post '/check_solution' do
   unless puzzle_empty?
-    grid = Grid.new
-    grid.upload params[:puzzle_current_state]
-    grid.puzzle_solved? ? 'Well done, puzzle solved!' : 'Puzzle not solved yet'
+    game_clone = Game.new
+    game_clone.upload_puzzle(params[:puzzle_current_state])
+    game_clone.puzzle_solved? ? solved_msg : unsolved_msg
   end
 end
 
+private
+
 def puzzle_empty?
   params[:puzzle_current_state] == '0' * 81
+end
+
+def solved_msg
+  'Well done, puzzle solved!'
+end
+
+def unsolved_msg
+  'Puzzle not solved yet'
 end
