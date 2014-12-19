@@ -42,6 +42,10 @@ and [Thin Webserver](https://github.com/macournoyer/thin/).
 __Update (17.11.14)__ : I've re-written the entire app from scratch 
 to generate a more cohesive and cleaner code.
 
+__Update (19.12.14)__ : Another round of deep code &amp; tests refactoring, 
+this time splitting the original Grid class to __Game__ and __Puzzle__ classes, 
+as well as adding two new modules: __PuzzleGenerator__ and __PuzzleSolver__.
+
 
 ##Functional Description
 
