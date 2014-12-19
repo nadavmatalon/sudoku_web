@@ -73,6 +73,8 @@
           mapPuzzle(data);
         },'text').success(function() {
           $('#loader-container').fadeOut(100);
+          $('#solution-show-button').prop('disabled', false);
+          $('#solution-hide-button').prop('disabled', true);
         });
     });
   });
